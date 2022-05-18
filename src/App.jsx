@@ -3,6 +3,7 @@ import "./app.css";
 import Trivia from "./components/Trivia";
 import Timer from "./components/Timer";
 import Start from "./components/Start";
+import questions from "./store/questions";
 
 function App() {
   const [username, setUsername] = useState(null);
@@ -10,75 +11,7 @@ function App() {
   const [stop, setStop] = useState(false);
   const [earned, setEarned] = useState("$ 0");
 
-  const data = [
-    {
-      id: 1,
-      question: "o?",
-      answers: [
-        {
-          text: "k",
-          correct: false,
-        },
-        {
-          text: "ko",
-          correct: false,
-        },
-        {
-          text: "km",
-          correct: false,
-        },
-        {
-          text: "ok",
-          correct: true,
-        },
-      ],
-    },
-    {
-      id: 2,
-      question: "tes?",
-      answers: [
-        {
-          text: "k",
-          correct: false,
-        },
-        {
-          text: "ko",
-          correct: false,
-        },
-        {
-          text: "km",
-          correct: false,
-        },
-        {
-          text: "ok",
-          correct: true,
-        },
-      ],
-    },
-    {
-      id: 3,
-      question: "dem?",
-      answers: [
-        {
-          text: "k",
-          correct: false,
-        },
-        {
-          text: "ko",
-          correct: false,
-        },
-        {
-          text: "km",
-          correct: false,
-        },
-        {
-          text: "ok",
-          correct: true,
-        },
-      ],
-    },
-    //other question
-  ]
+  const data = questions;
   
   const moneyPyramid = useMemo(() => 
     [
