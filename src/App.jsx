@@ -4,12 +4,12 @@ import Trivia from "./components/Trivia";
 
 function App() {
   const [questionNumber, setQuestionNumber] = useState(1);
-  const [timeOut, setTimeOut] = useState(false);
+  const [stop, setStop] = useState(false);
 
   const data = [
     {
       id: 1,
-      question: "DIO?",
+      question: "o?",
       answers: [
         {
           text: "k",
@@ -31,7 +31,7 @@ function App() {
     },
     {
       id: 2,
-      question: "DIO?",
+      question: "tes?",
       answers: [
         {
           text: "k",
@@ -53,7 +53,7 @@ function App() {
     },
     {
       id: 3,
-      question: "DIO?",
+      question: "dem?",
       answers: [
         {
           text: "k",
@@ -104,7 +104,7 @@ function App() {
         <div className="bottom">
           <Trivia 
             data={data} 
-            setTimeOut={setTimeOut} 
+            setStop={setStop} 
             questionNumber={questionNumber}
             setQuestionNumber={setQuestionNumber} 
           />
