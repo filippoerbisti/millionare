@@ -18,9 +18,15 @@ function App() {
     pyramid,
   []); 
 
+  const endGame = pyramid.length + 1;
+
   useEffect(() => {
     questionNumber > 1 && setEarned(moneyPyramid.find((m) => m.id === questionNumber - 1).amount);
   }, [moneyPyramid, questionNumber]);
+
+  const handleClickRestart = () => {
+    window.location.reload();
+  };
 
   return (
     <div className="app">
@@ -29,25 +35,45 @@ function App() {
         <>
           <div className="main">
             {stop ? (
-              <h1 className="endText">You earned: {earned}</h1>
+              <div className="endGame">
+                <h1 className="endText pb-20">You earned: {earned}</h1>
+                <button className="startButton" onClick={handleClickRestart}>RESTART</button>
+              </div>
             ) : (
               <>
-                <div className="top">
-                  <div className="timer">
-                    <Timer 
-                      setStop={setStop} 
-                      questionNumber={questionNumber} 
-                    />
+                {questionNumber === endGame ? (
+                  <div className="endGame">
+                    <h1 className="endGameText">
+                      CONGRATULATIONS
+                      <br></br>
+                      {username.toUpperCase()}!
+                    </h1> 
+                    <div className="endEarned">
+                      <h3 className="endEarnedText">YOU WIN</h3>
+                      <h1 className="endEarnedText win animate__heartBeat">{earned}</h1>
+                    </div>
+                    <button className="startButton" onClick={handleClickRestart}>RESTART</button>
                   </div>
-                </div>
-                <div className="bottom">
-                  <Trivia 
-                    data={data} 
-                    setStop={setStop} 
-                    questionNumber={questionNumber}
-                    setQuestionNumber={setQuestionNumber} 
-                  />
-                </div>
+                ) : (
+                  <>
+                    <div className="top">
+                      <div className="timer">
+                        <Timer 
+                          setStop={setStop} 
+                          questionNumber={questionNumber} 
+                        />
+                      </div>
+                    </div>
+                    <div className="bottom">
+                      <Trivia 
+                        data={data} 
+                        setStop={setStop} 
+                        questionNumber={questionNumber}
+                        setQuestionNumber={setQuestionNumber} 
+                      />
+                    </div>
+                  </>
+                )}
               </>
             )}
           </div>
