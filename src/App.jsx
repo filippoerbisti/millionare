@@ -1,7 +1,80 @@
 import { useState } from "react";
 import "./app.css";
+import Trivia from "./components/Trivia";
 
 function App() {
+  const [questionNumber, setQuestionNumber] = useState(1);
+  const [timeOut, setTimeOut] = useState(false);
+
+  const data = [
+    {
+      id: 1,
+      question: "DIO?",
+      answers: [
+        {
+          text: "k",
+          correct: false,
+        },
+        {
+          text: "ko",
+          correct: false,
+        },
+        {
+          text: "km",
+          correct: false,
+        },
+        {
+          text: "ok",
+          correct: true,
+        },
+      ],
+    },
+    {
+      id: 2,
+      question: "DIO?",
+      answers: [
+        {
+          text: "k",
+          correct: false,
+        },
+        {
+          text: "ko",
+          correct: false,
+        },
+        {
+          text: "km",
+          correct: false,
+        },
+        {
+          text: "ok",
+          correct: true,
+        },
+      ],
+    },
+    {
+      id: 3,
+      question: "DIO?",
+      answers: [
+        {
+          text: "k",
+          correct: false,
+        },
+        {
+          text: "ko",
+          correct: false,
+        },
+        {
+          text: "km",
+          correct: false,
+        },
+        {
+          text: "ok",
+          correct: true,
+        },
+      ],
+    },
+    //other question
+  ]
   
   const moneyPyramid = [
     { id: 1, amount: "$ 100" },
@@ -21,8 +94,6 @@ function App() {
     { id: 15, amount: "$ 1000000" },
   ].reverse();
 
-  const [questionNumber, setQuestionNumber] = useState(1);
-
   return (
     <div className="app">
 
@@ -30,13 +101,27 @@ function App() {
         <div className="top">
           <div className="timer">30</div>
         </div>
-        <div className="bottom">question adn answer</div>
+        <div className="bottom">
+          <Trivia 
+            data={data} 
+            setTimeOut={setTimeOut} 
+            questionNumber={questionNumber}
+            setQuestionNumber={setQuestionNumber} 
+          />
+        </div>
       </div>
 
       <div className="pyramid">
         <ul className="moneyList">
           {moneyPyramid.map(m => (
-            <li className={questionNumber === m.id ? "moneyListItem active" : "moneyListItem"}>
+            <li 
+              key={m.id}
+              className={
+                questionNumber === m.id 
+                ? "moneyListItem active" 
+                : "moneyListItem"
+              }
+            >
               <span className="moneyListItemNumber">{m.id}</span>
               <span className="moneyListItemAmount">{m.amount}</span>
             </li>
